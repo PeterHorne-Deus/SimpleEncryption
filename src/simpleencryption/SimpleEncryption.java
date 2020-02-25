@@ -1,10 +1,12 @@
 package simpleencryption;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Peter Horne-Deus
+ * This program proforms a simple single character shift encryption and decription 
+ * SimpleEncryption.java
+ * Feburary 24, 2020
  */
+
 
 /**
  *
@@ -87,62 +89,83 @@ public class SimpleEncryption extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void encryptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptBtnActionPerformed
+        //Variables
         String input = encryptTxtfeild.getText();
         char letterIn,letterOut;
         int characterValue;
         String output = "";
         int n =0;
         
+        //Setting input string to lower case to ensure that ascii values will be correct
         input = input.toLowerCase();
         
+        //Loop to shift all the letters 
         for(int i = 0; i < input.length(); i++){
+            //Setting a character to the input string character
             letterIn = input.charAt(n);
+            //Shifting the character one space through interger casting
             characterValue = (int)letterIn + 1;
             
+            //Checking if the character is a space and if so making sure it remains a space
             if(characterValue == 33){
                 characterValue = 32;
                 letterOut = (char)characterValue;
             }
+            //Checking if the character is a 'z' and the setting it to an 'a'
             else if(characterValue == 123){
                 characterValue = 97;
                 letterOut = (char)characterValue;    
             }
+            //Setting the output chracters for any other characters 
             else{
                 letterOut = (char)characterValue;
             }
+            //Setting the output string 
             output = output + letterOut;
             n++;
         }
+        //Outputing the message
         encryptLbl.setText("Output: " + output);
         
     }//GEN-LAST:event_encryptBtnActionPerformed
 
     private void unencryptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unencryptBtnActionPerformed
-       String input = unencryptTxtFeild.getText();
+        //Variables
+        String input = unencryptTxtFeild.getText();
         char letterIn,letterOut;
         int characterValue;
         String output = "";
         int n =0;
         
+        //Setting the input to lower case to ensure proper ascii values
         input = input.toLowerCase();
+        
+        //This is the loop that shifts the characters back by one
         for(int i = 0; i < input.length(); i++){
+            //Getting the character of the input at a given location
             letterIn = input.charAt(n);
+            //Casting the character value to an interger to decrease the value by one
             characterValue = (int)letterIn - 1;
             
+            //Checking for spaces so that the spaces remain spaces
             if(characterValue == 31){
                 characterValue = 32;
                 letterOut = (char)characterValue;
             }
+            //Checking if the letter is an 'a' and switching it to a 'z'
             else if(characterValue == 96){
                 characterValue = 122;
                 letterOut = (char)characterValue;    
             }
+            //Setting to correct output for all other characters
             else{
                 letterOut = (char)characterValue;
             }
+            //Setting the output string based on the output characters
             output = output + letterOut;
             n++;
         }
+        //Outputing the final message
         unencryptLbl.setText("Output: " + output);
     }//GEN-LAST:event_unencryptBtnActionPerformed
 
